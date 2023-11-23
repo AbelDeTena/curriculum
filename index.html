@@ -1,0 +1,990 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>CV Manfred Export</title>
+    <style>
+      /* css vars */
+      :root {
+        /* spacing */
+        --spacing_base: 4px;
+        --spacing_2: calc(var(--spacing_base) / 2);
+        --spacing_8: calc(var(--spacing_base) * 2);
+        --spacing_12: calc(var(--spacing_base) * 3);
+        --spacing_16: calc(var(--spacing_base) * 4);
+        --spacing_24: calc(var(--spacing_base) * 6);
+        --spacing_32: calc(var(--spacing_base) * 8);
+        --spacing_48: calc(var(--spacing_base) * 12);
+        --spacing_64: calc(var(--spacing_base) * 16);
+        /* colors */
+        --primary_color: #1B2B33;/* only this color can be changed  */
+        --light_color: #f0f8f9;
+        --white_color: #fbfbfa;
+        --black_color_800: #111a1f;
+        --black_color_900: #0d1418;
+        --gray_color_900: #5c5a58;
+        --gray_color_50: #e9eaeb;
+      }
+      /* General styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        font-family: Poppins, sans-serif;
+        min-width: 390px;
+        font-size: 16px;
+        font-style: normal;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+      }
+      .container {
+        max-width: 1200px;
+        background-color: var(--white_color);
+        display: grid;
+        grid-template-areas:
+          "aside"
+          "main";
+      }
+      .divider {
+        border-radius: var(--spacing_base);
+        border: var(--spacing_2) solid var(--primary_color);
+        width: 50%;
+      }
+      /* header styles */
+      header {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing_16);
+      }
+      h1 {
+        display: flex;
+        flex-direction: column;
+        color: var(--white_color);
+        font-size: 48px;
+        font-weight: 600;
+        line-height: 28px;
+        text-transform: uppercase;
+        gap: var(--spacing_16);
+      }
+      h1 > span {
+        font-size: 36px;
+      }
+      .job-title {
+        color: var(--gray_color_50);
+        font-size: 20px;
+        font-weight: 500;
+        letter-spacing: 0.4px;
+      }
+      header > hr {
+        border: 1px solid var(--light_color);
+        width: 100%;
+      }
+
+      @media (min-width: 1024px) {
+        h1 {
+          gap: var(--spacing_8);
+        }
+        .job-title {
+          font-size: 16px;
+        }
+        .container {
+          grid-template-areas: "aside main";
+          grid-template-columns: 333px auto;
+          align-self: center;
+        }
+      }
+      /* aside styles */
+      aside {
+        grid-area: aside;
+        background-color: var(--primary_color);
+        display: flex;
+        flex-direction: column;
+        padding: var(--spacing_64) var(--spacing_32);
+        gap: var(--spacing_32);
+      }
+      .aside__section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing_8);
+      }
+      .aside__section > h3 {
+        color: var(--white_color);
+        font-size: 16px;
+        font-weight: 600;
+      }
+      .aside__section__link-items {
+        display: flex;
+        padding: 0px var(--spacing_8);
+        justify-content: space-between;
+        row-gap: var(--spacing_32);
+        column-gap: var(--spacing_8);
+        font-size: 14px;
+        flex-wrap: wrap;
+      }
+      .aside__section__list-items {
+        color: var(--white_color);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 28px;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing_8);
+        padding-left: var(--spacing_32);
+      }
+      .aside__section__item {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing_8);
+      }
+      .aside__section__item > a {
+        color: var(--white_color);
+        font-size: 14px;
+        text-decoration: none;
+        text-transform: capitalize;
+      }
+      .aside__section__item > a:hover {
+        color: var(--black_color);
+      }
+      @media (min-width: 728px) {
+        aside {
+          padding: var(--spacing_64) var(--spacing_32) var(--spacing_32)
+            var(--spacing_32);
+        }
+        .aside__section__link-items {
+          flex-wrap: nowrap;
+        }
+      }
+      @media (min-width: 1024px) {
+        aside {
+          grid-area: aside;
+          padding: var(--spacing_64) var(--spacing_32);
+          width: 100%;
+        }
+        h1 {
+          font-size: 36px;
+        }
+        h1 > span {
+          font-size: 24px;
+        }
+        .aside__section__link-items {
+          flex-direction: column;
+          gap: var(--spacing_16);
+        }
+      }
+      /* main section styles */
+      main {
+        grid-area: main;
+        display: flex;
+        padding: var(--spacing_32) var(--spacing_16);
+        flex-direction: column;
+        gap: var(--spacing_32);
+      }
+      .main__section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing_16);
+      }
+      .main__section__header {
+        display: flex;
+        flex-direction: column;
+      }
+      .main__section__header > h2 {
+        color: var(--primary_color);
+        text-align: center;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: normal;
+      }
+      .main__section__item {
+        color: var(--black_color_900);
+        font-size: 12px;
+        font-weight: 400;
+        display: flex;
+        gap: var(--spacing_8);
+        flex-grow: 1;
+      }
+      .section__content {
+        flex-direction: column;
+        gap: var(--spacing_8);
+        display: flex;
+      }
+      .section__content > h3 {
+        color: var(--black_color_900);
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 20px;
+      }
+      .section__content > h4 {
+        color: var(--black_color_900);
+        font-size: 16px;
+        font-weight: 400;
+      }
+      .section__content__date {
+        display: flex;
+        gap: var(--spacing_8);
+      }
+      .section__content__data {
+        color: var(--gray_color_900);
+        line-height: 24px;
+      }
+      .section__content__data b {
+        font-weight: 600;
+      }
+      .section__content__data__ul {
+        font-weight: 300;
+        padding-left: var(--spacing_16);
+      }
+      .data {
+        color: var(--gray_color_900);
+        font-weight: 400;
+      }
+      .data b {
+        font-weight: 700;
+      }
+      .dot-icon {
+        display: flex;
+        padding: var(--spacing_base);
+      }
+.date {
+  text-transform: capitalize;
+}
+
+      @media (min-width: 728px) {
+        main {
+          padding: var(--spacing_32) var(--spacing_64);
+        }
+      }
+      @media (min-width: 1024px) {
+        main {
+          grid-area: main;
+          padding: var(--spacing_64);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+
+
+      <aside>
+
+      <header>
+
+      
+    <h1>Abel <br /><span>de Tena Torres</span></h1>
+    <hr />
+    <p class="job-title">Front End Developer</p>
+    
+
+
+
+      </header>
+
+        <div class="aside__section">
+        <h3>Mis enlaces</h3>
+        <div class="aside__section__link-items">
+        <div class="aside__section__item">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="15"
+            viewBox="0 0 14 15"
+            fill="none"
+          >
+            <g clip-path="url(#clip0_1324_769)">
+              <path
+                d="M11.9274 12.4303H9.85425V9.18175C9.85425 8.40708 9.8385 7.41017 8.77392 7.41017C7.693 7.41017 7.52792 8.25308 7.52792 9.12458V12.4303H5.45475V5.75H7.44625V6.66058H7.47308C7.75133 6.13558 8.428 5.58142 9.43892 5.58142C11.5395 5.58142 11.928 6.96392 11.928 8.7635V12.4303H11.9274ZM3.11325 4.83592C2.9551 4.83599 2.79848 4.80488 2.65236 4.74436C2.50625 4.68383 2.3735 4.59509 2.26172 4.4832C2.14994 4.37132 2.06133 4.23848 2.00095 4.09231C1.94056 3.94614 1.9096 3.78949 1.90983 3.63133C1.90995 3.3932 1.98067 3.16046 2.11307 2.96253C2.24546 2.76459 2.43357 2.61036 2.65362 2.51934C2.87367 2.42832 3.11576 2.4046 3.34929 2.45117C3.58282 2.49774 3.7973 2.61251 3.9656 2.78097C4.1339 2.94944 4.24847 3.16402 4.29481 3.3976C4.34116 3.63118 4.3172 3.87325 4.22596 4.09321C4.13473 4.31316 3.98032 4.50113 3.78225 4.63333C3.58419 4.76553 3.35138 4.83603 3.11325 4.83592ZM4.15275 12.4303H2.07375V5.75H4.15275V12.4303ZM12.9646 0.5H1.03308C0.462 0.5 0 0.9515 0 1.50858V13.4914C0 14.0491 0.462 14.5 1.03308 14.5H12.9628C13.5333 14.5 14 14.0491 14 13.4914V1.50858C14 0.9515 13.5333 0.5 12.9628 0.5H12.9646Z"
+                fill="#FBFBFA"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_1324_769">
+                <rect
+                  width="14"
+                  height="14"
+                  fill="white"
+                  transform="translate(0 0.5)"
+                />
+              </clipPath>
+            </defs>
+          </svg>
+          <a href=https://www.linkedin.com/in/abeldetena/ target="_blank">Linkedin</a>
+        </div>
+
+
+
+
+
+  </div>
+</div>
+
+
+        <div class="aside__section">
+    <h3>Idiomas</h3>
+    <ul class="aside__section__list-items">
+        <li>Inglés (Habilidad profesional en el trabajo)</li>
+        <li>Español (Habilidad nativo o bilingüe)</li>
+    </ul>
+  </div>
+
+
+          <div class="aside__section">
+        <h3>Competencias</h3>
+      <ul class="aside__section__list-items">
+          <li>AngularJS</li>
+          <li>CSS</li>
+          <li>Git</li>
+          <li>Github</li>
+          <li>HTML</li>
+          <li>JavaScript</li>
+          <li>NodeJS</li>
+          <li>React</li>
+          <li>Sass</li>
+          <li>Svelte</li>
+          <li>TypeScript</li>
+          <li>Webpack</li>
+      </ul>
+    </div>
+
+          <div class="aside__section">
+      <h3>Habilidades</h3>
+      <ul class="aside__section__list-items">
+          <li>Aprendizaje Continuo</li>
+          <li>Capacidad de autogestión</li>
+          <li>Pensamiento analítico</li>
+      </ul>
+    </div>
+
+      </aside>
+
+      <main>
+
+          <section class="main__section">
+    <div class="main__section__header">
+    <h2>Sobre mí</h2>
+    <hr class="divider"/>
+  </div>
+    <p class="main__section__item">While I have developed my career mainly in the field of management and logistics, I have always sought to do so using the best tools at my disposal. Thanks to that curiosity for doing things well, I learned about the use and development of software and discovered a new vocation.
+
+I have worked with Excel, Access, and various ERPs, developing small tools to improve production processes, until I finally decided to dedicate myself to programming.
+
+Since late 2022, I have been exclusively focused on studying software development, primarily Front End. I hope to continue learning and growing while contributing to real projects.</p>
+  </section>
+
+
+
+        <section class="main__section">
+    <div class="main__section__header">
+      <h2>Experiencia / Carrera</h2>
+      <hr class="divider" />
+    </div>
+      <div class="main__section__item">
+        <div class="dot-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="8"
+            height="8"
+            viewBox="0 0 8 8"
+            fill="none"
+          >
+            <circle opacity="0.33" cx="4" cy="4" r="4" fill="#247A7E" />
+          </svg>
+        </div>
+        <div class="section__content">
+            <h3>manfred</h3>
+          <div class="section__content__date">
+            <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                >
+                  <path
+                    opacity="0.75"
+                    d="M4.33333 1V3M13.6667 1V3M1 15V5C1 4.46957 1.21071 3.96086 1.58579 3.58579C1.96086 3.21071 2.46957 3 3 3H15C15.5304 3 16.0391 3.21071 16.4142 3.58579C16.7893 3.96086 17 4.46957 17 5V15M1 15C1 15.5304 1.21071 16.0391 1.58579 16.4142C1.96086 16.7893 2.46957 17 3 17H15C15.5304 17 16.0391 16.7893 16.4142 16.4142C16.7893 16.0391 17 15.5304 17 15M1 15V8.33333C1 7.8029 1.21071 7.29419 1.58579 6.91912C1.96086 6.54405 2.46957 6.33333 3 6.33333H15C15.5304 6.33333 16.0391 6.54405 16.4142 6.91912C16.7893 7.29419 17 7.8029 17 8.33333V15M9 9.66667H9.00711V9.67378H9V9.66667ZM9 11.6667H9.00711V11.6738H9V11.6667ZM9 13.6667H9.00711V13.6738H9V13.6667ZM7 11.6667H7.00711V11.6738H7V11.6667ZM7 13.6667H7.00711V13.6738H7V13.6667ZM5 11.6667H5.00711V11.6738H5V11.6667ZM5 13.6667H5.00711V13.6738H5V13.6667ZM11 9.66667H11.0071V9.67378H11V9.66667ZM11 11.6667H11.0071V11.6738H11V11.6667ZM11 13.6667H11.0071V13.6738H11V13.6667ZM13 9.66667H13.0071V9.67378H13V9.66667ZM13 11.6667H13.0071V11.6738H13V11.6667Z"
+                    stroke="#0D1418"
+                    stroke-width="0.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+            <p class="date">oct 2023              - Actualidad
+            </p>
+          </div>
+            <p class="section__content__data">Roles dentro de la empresa: <b>Colaboracion con Manfred</b></p>
+              <p class="section__content__data">Retos:</p>
+                <ul class="section__content__data section__content__data__ul">
+                    <li>Contribuciones al desarrollo de las plantillas de manfred-export para convertir la información del CV a distintos formatos y con varias plantillas. </li>
+                </ul>
+        </div>
+      </div>
+      <div class="main__section__item">
+        <div class="dot-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="8"
+            height="8"
+            viewBox="0 0 8 8"
+            fill="none"
+          >
+            <circle opacity="0.33" cx="4" cy="4" r="4" fill="#247A7E" />
+          </svg>
+        </div>
+        <div class="section__content">
+            <h3>AGROEJIDO SA</h3>
+          <div class="section__content__date">
+            <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                >
+                  <path
+                    opacity="0.75"
+                    d="M4.33333 1V3M13.6667 1V3M1 15V5C1 4.46957 1.21071 3.96086 1.58579 3.58579C1.96086 3.21071 2.46957 3 3 3H15C15.5304 3 16.0391 3.21071 16.4142 3.58579C16.7893 3.96086 17 4.46957 17 5V15M1 15C1 15.5304 1.21071 16.0391 1.58579 16.4142C1.96086 16.7893 2.46957 17 3 17H15C15.5304 17 16.0391 16.7893 16.4142 16.4142C16.7893 16.0391 17 15.5304 17 15M1 15V8.33333C1 7.8029 1.21071 7.29419 1.58579 6.91912C1.96086 6.54405 2.46957 6.33333 3 6.33333H15C15.5304 6.33333 16.0391 6.54405 16.4142 6.91912C16.7893 7.29419 17 7.8029 17 8.33333V15M9 9.66667H9.00711V9.67378H9V9.66667ZM9 11.6667H9.00711V11.6738H9V11.6667ZM9 13.6667H9.00711V13.6738H9V13.6667ZM7 11.6667H7.00711V11.6738H7V11.6667ZM7 13.6667H7.00711V13.6738H7V13.6667ZM5 11.6667H5.00711V11.6738H5V11.6667ZM5 13.6667H5.00711V13.6738H5V13.6667ZM11 9.66667H11.0071V9.67378H11V9.66667ZM11 11.6667H11.0071V11.6738H11V11.6667ZM11 13.6667H11.0071V13.6738H11V13.6667ZM13 9.66667H13.0071V9.67378H13V9.66667ZM13 11.6667H13.0071V11.6738H13V11.6667Z"
+                    stroke="#0D1418"
+                    stroke-width="0.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+            <p class="date">mar 2021              - feb 2023            </p>
+          </div>
+            <p class="section__content__data">Roles dentro de la empresa: <b>Responsable de Facturación y Envases</b></p>
+              <p class="section__content__data">Retos:</p>
+                <ul class="section__content__data section__content__data__ul">
+                    <li>- Revisión de albaranes de carga
+- Facturación de clientes nacionales e internacionales
+- Facturación y resolución de incidencias a través de la plataforma EDI
+- Liquidaciones de cuentas de ventas
+- Resolución de incidencias en facturación
+- Digitalización de reclamaciones
+- Gestión del archivo
+- Gestión de inventarios de envases
+- Declaraciones de entregas de envases ( Chep, Ifco, Euro Pool, CPR, Logifruit, etc)
+- Cuadrar pagos</li>
+                </ul>
+        </div>
+      </div>
+      <div class="main__section__item">
+        <div class="dot-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="8"
+            height="8"
+            viewBox="0 0 8 8"
+            fill="none"
+          >
+            <circle opacity="0.33" cx="4" cy="4" r="4" fill="#247A7E" />
+          </svg>
+        </div>
+        <div class="section__content">
+            <h3>Cooperativa Vicasol</h3>
+          <div class="section__content__date">
+            <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                >
+                  <path
+                    opacity="0.75"
+                    d="M4.33333 1V3M13.6667 1V3M1 15V5C1 4.46957 1.21071 3.96086 1.58579 3.58579C1.96086 3.21071 2.46957 3 3 3H15C15.5304 3 16.0391 3.21071 16.4142 3.58579C16.7893 3.96086 17 4.46957 17 5V15M1 15C1 15.5304 1.21071 16.0391 1.58579 16.4142C1.96086 16.7893 2.46957 17 3 17H15C15.5304 17 16.0391 16.7893 16.4142 16.4142C16.7893 16.0391 17 15.5304 17 15M1 15V8.33333C1 7.8029 1.21071 7.29419 1.58579 6.91912C1.96086 6.54405 2.46957 6.33333 3 6.33333H15C15.5304 6.33333 16.0391 6.54405 16.4142 6.91912C16.7893 7.29419 17 7.8029 17 8.33333V15M9 9.66667H9.00711V9.67378H9V9.66667ZM9 11.6667H9.00711V11.6738H9V11.6667ZM9 13.6667H9.00711V13.6738H9V13.6667ZM7 11.6667H7.00711V11.6738H7V11.6667ZM7 13.6667H7.00711V13.6738H7V13.6667ZM5 11.6667H5.00711V11.6738H5V11.6667ZM5 13.6667H5.00711V13.6738H5V13.6667ZM11 9.66667H11.0071V9.67378H11V9.66667ZM11 11.6667H11.0071V11.6738H11V11.6667ZM11 13.6667H11.0071V13.6738H11V13.6667ZM13 9.66667H13.0071V9.67378H13V9.66667ZM13 11.6667H13.0071V11.6738H13V11.6667Z"
+                    stroke="#0D1418"
+                    stroke-width="0.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+            <p class="date">sept 2019              - feb 2021            </p>
+          </div>
+            <p class="section__content__data">Roles dentro de la empresa: <b>Responsable de expediciones, administrativo de Documentacion en Salidas</b></p>
+              <p class="section__content__data">Retos:</p>
+                <ul class="section__content__data section__content__data__ul">
+                    <li>- Alto volumen de trabajo
+- Gestión del correo electrónico
+- Coordinar cargas con tráfico
+- Elaboración de la documentación 
+- Controlar inventarios y stocks
+- Coordinar el equipo de expediciones</li>
+                </ul>
+        </div>
+      </div>
+      <div class="main__section__item">
+        <div class="dot-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="8"
+            height="8"
+            viewBox="0 0 8 8"
+            fill="none"
+          >
+            <circle opacity="0.33" cx="4" cy="4" r="4" fill="#247A7E" />
+          </svg>
+        </div>
+        <div class="section__content">
+            <h3>Producción Ornamental Mediterráneo, S.L. (P.O.M)</h3>
+          <div class="section__content__date">
+            <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                >
+                  <path
+                    opacity="0.75"
+                    d="M4.33333 1V3M13.6667 1V3M1 15V5C1 4.46957 1.21071 3.96086 1.58579 3.58579C1.96086 3.21071 2.46957 3 3 3H15C15.5304 3 16.0391 3.21071 16.4142 3.58579C16.7893 3.96086 17 4.46957 17 5V15M1 15C1 15.5304 1.21071 16.0391 1.58579 16.4142C1.96086 16.7893 2.46957 17 3 17H15C15.5304 17 16.0391 16.7893 16.4142 16.4142C16.7893 16.0391 17 15.5304 17 15M1 15V8.33333C1 7.8029 1.21071 7.29419 1.58579 6.91912C1.96086 6.54405 2.46957 6.33333 3 6.33333H15C15.5304 6.33333 16.0391 6.54405 16.4142 6.91912C16.7893 7.29419 17 7.8029 17 8.33333V15M9 9.66667H9.00711V9.67378H9V9.66667ZM9 11.6667H9.00711V11.6738H9V11.6667ZM9 13.6667H9.00711V13.6738H9V13.6667ZM7 11.6667H7.00711V11.6738H7V11.6667ZM7 13.6667H7.00711V13.6738H7V13.6667ZM5 11.6667H5.00711V11.6738H5V11.6667ZM5 13.6667H5.00711V13.6738H5V13.6667ZM11 9.66667H11.0071V9.67378H11V9.66667ZM11 11.6667H11.0071V11.6738H11V11.6667ZM11 13.6667H11.0071V13.6738H11V13.6667ZM13 9.66667H13.0071V9.67378H13V9.66667ZM13 11.6667H13.0071V11.6738H13V11.6667Z"
+                    stroke="#0D1418"
+                    stroke-width="0.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+            <p class="date">oct 2018              - oct 2019            </p>
+          </div>
+            <p class="section__content__data">Roles dentro de la empresa: <b>Jefe de almacén y logística</b></p>
+              <p class="section__content__data">Retos:</p>
+                <ul class="section__content__data section__content__data__ul">
+                    <li>- Recepcionar pedidos
+- Comprobar albaranes y calidad
+- Dar entrada a los pedidos 
+- Dirigir a los mozos de almacén 
+- Coordinar horarios 
+- Preparación de los pedidos
+- Emisión de los pedidos
+- Control de los inventarios de materiales
+- Gestion de inventarios
+</li>
+                </ul>
+        </div>
+      </div>
+      <div class="main__section__item">
+        <div class="dot-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="8"
+            height="8"
+            viewBox="0 0 8 8"
+            fill="none"
+          >
+            <circle opacity="0.33" cx="4" cy="4" r="4" fill="#247A7E" />
+          </svg>
+        </div>
+        <div class="section__content">
+            <h3>JYSK</h3>
+          <div class="section__content__date">
+            <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                >
+                  <path
+                    opacity="0.75"
+                    d="M4.33333 1V3M13.6667 1V3M1 15V5C1 4.46957 1.21071 3.96086 1.58579 3.58579C1.96086 3.21071 2.46957 3 3 3H15C15.5304 3 16.0391 3.21071 16.4142 3.58579C16.7893 3.96086 17 4.46957 17 5V15M1 15C1 15.5304 1.21071 16.0391 1.58579 16.4142C1.96086 16.7893 2.46957 17 3 17H15C15.5304 17 16.0391 16.7893 16.4142 16.4142C16.7893 16.0391 17 15.5304 17 15M1 15V8.33333C1 7.8029 1.21071 7.29419 1.58579 6.91912C1.96086 6.54405 2.46957 6.33333 3 6.33333H15C15.5304 6.33333 16.0391 6.54405 16.4142 6.91912C16.7893 7.29419 17 7.8029 17 8.33333V15M9 9.66667H9.00711V9.67378H9V9.66667ZM9 11.6667H9.00711V11.6738H9V11.6667ZM9 13.6667H9.00711V13.6738H9V13.6667ZM7 11.6667H7.00711V11.6738H7V11.6667ZM7 13.6667H7.00711V13.6738H7V13.6667ZM5 11.6667H5.00711V11.6738H5V11.6667ZM5 13.6667H5.00711V13.6738H5V13.6667ZM11 9.66667H11.0071V9.67378H11V9.66667ZM11 11.6667H11.0071V11.6738H11V11.6667ZM11 13.6667H11.0071V13.6738H11V13.6667ZM13 9.66667H13.0071V9.67378H13V9.66667ZM13 11.6667H13.0071V11.6738H13V11.6667Z"
+                    stroke="#0D1418"
+                    stroke-width="0.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+            <p class="date">sept 2018              - ene 2019            </p>
+          </div>
+            <p class="section__content__data">Roles dentro de la empresa: <b>Vendedor</b></p>
+              <p class="section__content__data">Retos:</p>
+                <ul class="section__content__data section__content__data__ul">
+                    <li>- Atención al cliente
+- Caja
+- Almacenamiento
+- Carga y descarga
+- Ventas
+- Trabajo en equipo
+</li>
+                </ul>
+        </div>
+      </div>
+      <div class="main__section__item">
+        <div class="dot-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="8"
+            height="8"
+            viewBox="0 0 8 8"
+            fill="none"
+          >
+            <circle opacity="0.33" cx="4" cy="4" r="4" fill="#247A7E" />
+          </svg>
+        </div>
+        <div class="section__content">
+            <h3>Fiscosur : Asesores - Abogados - Economistas - Auditores</h3>
+          <div class="section__content__date">
+            <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                >
+                  <path
+                    opacity="0.75"
+                    d="M4.33333 1V3M13.6667 1V3M1 15V5C1 4.46957 1.21071 3.96086 1.58579 3.58579C1.96086 3.21071 2.46957 3 3 3H15C15.5304 3 16.0391 3.21071 16.4142 3.58579C16.7893 3.96086 17 4.46957 17 5V15M1 15C1 15.5304 1.21071 16.0391 1.58579 16.4142C1.96086 16.7893 2.46957 17 3 17H15C15.5304 17 16.0391 16.7893 16.4142 16.4142C16.7893 16.0391 17 15.5304 17 15M1 15V8.33333C1 7.8029 1.21071 7.29419 1.58579 6.91912C1.96086 6.54405 2.46957 6.33333 3 6.33333H15C15.5304 6.33333 16.0391 6.54405 16.4142 6.91912C16.7893 7.29419 17 7.8029 17 8.33333V15M9 9.66667H9.00711V9.67378H9V9.66667ZM9 11.6667H9.00711V11.6738H9V11.6667ZM9 13.6667H9.00711V13.6738H9V13.6667ZM7 11.6667H7.00711V11.6738H7V11.6667ZM7 13.6667H7.00711V13.6738H7V13.6667ZM5 11.6667H5.00711V11.6738H5V11.6667ZM5 13.6667H5.00711V13.6738H5V13.6667ZM11 9.66667H11.0071V9.67378H11V9.66667ZM11 11.6667H11.0071V11.6738H11V11.6667ZM11 13.6667H11.0071V13.6738H11V13.6667ZM13 9.66667H13.0071V9.67378H13V9.66667ZM13 11.6667H13.0071V11.6738H13V11.6667Z"
+                    stroke="#0D1418"
+                    stroke-width="0.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+            <p class="date">jul 2018              - ago 2018            </p>
+          </div>
+            <p class="section__content__data">Roles dentro de la empresa: <b>Contable</b></p>
+              <p class="section__content__data">Retos:</p>
+                <ul class="section__content__data section__content__data__ul">
+                    <li>Contabilidad:
+- Compras/Ventas
+- Apertura/Cierrre
+- Amortización/Enajenación
+- Cuentas anuales
+
+Impuestos:
+- IVA (303, 390, 347, 349)
+- Impuesto de Sociedades (200)
+- IRPF (100, 130)
+- Rentenciones (111, 115, 180, 190)
+
+</li>
+                </ul>
+        </div>
+      </div>
+      <div class="main__section__item">
+        <div class="dot-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="8"
+            height="8"
+            viewBox="0 0 8 8"
+            fill="none"
+          >
+            <circle opacity="0.33" cx="4" cy="4" r="4" fill="#247A7E" />
+          </svg>
+        </div>
+        <div class="section__content">
+            <h3>Asesoria Garcia Lirola</h3>
+          <div class="section__content__date">
+            <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                >
+                  <path
+                    opacity="0.75"
+                    d="M4.33333 1V3M13.6667 1V3M1 15V5C1 4.46957 1.21071 3.96086 1.58579 3.58579C1.96086 3.21071 2.46957 3 3 3H15C15.5304 3 16.0391 3.21071 16.4142 3.58579C16.7893 3.96086 17 4.46957 17 5V15M1 15C1 15.5304 1.21071 16.0391 1.58579 16.4142C1.96086 16.7893 2.46957 17 3 17H15C15.5304 17 16.0391 16.7893 16.4142 16.4142C16.7893 16.0391 17 15.5304 17 15M1 15V8.33333C1 7.8029 1.21071 7.29419 1.58579 6.91912C1.96086 6.54405 2.46957 6.33333 3 6.33333H15C15.5304 6.33333 16.0391 6.54405 16.4142 6.91912C16.7893 7.29419 17 7.8029 17 8.33333V15M9 9.66667H9.00711V9.67378H9V9.66667ZM9 11.6667H9.00711V11.6738H9V11.6667ZM9 13.6667H9.00711V13.6738H9V13.6667ZM7 11.6667H7.00711V11.6738H7V11.6667ZM7 13.6667H7.00711V13.6738H7V13.6667ZM5 11.6667H5.00711V11.6738H5V11.6667ZM5 13.6667H5.00711V13.6738H5V13.6667ZM11 9.66667H11.0071V9.67378H11V9.66667ZM11 11.6667H11.0071V11.6738H11V11.6667ZM11 13.6667H11.0071V13.6738H11V13.6667ZM13 9.66667H13.0071V9.67378H13V9.66667ZM13 11.6667H13.0071V11.6738H13V11.6667Z"
+                    stroke="#0D1418"
+                    stroke-width="0.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+            <p class="date">sept 2014              - ago 2016            </p>
+          </div>
+            <p class="section__content__data">Roles dentro de la empresa: <b>Contable</b></p>
+              <p class="section__content__data">Retos:</p>
+                <ul class="section__content__data section__content__data__ul">
+                    <li>- Registro Contable
+- Elaboración y presentación de módelos tributarios
+- Conciliación Bancaria
+- Elaboración y presentación de Estados Contables
+- Gestion de archivos</li>
+                </ul>
+        </div>
+      </div>
+    </section>
+
+          <section class="main__section">
+      <div class="main__section__header">
+        <h2>Estudios</h2>
+        <hr class="divider" />
+      </div>
+      <div class="main__section__item">
+        <div class="dot-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="8"
+            height="8"
+            viewBox="0 0 8 8"
+            fill="none"
+          >
+            <circle opacity="0.33" cx="4" cy="4" r="4" fill="#247A7E" />
+          </svg>
+        </div>
+        <div class="section__content">
+            <h3>Bootcamp Backend</h3>
+          <div class="section__content__date">
+            <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                >
+                  <path
+                    opacity="0.75"
+                    d="M4.33333 1V3M13.6667 1V3M1 15V5C1 4.46957 1.21071 3.96086 1.58579 3.58579C1.96086 3.21071 2.46957 3 3 3H15C15.5304 3 16.0391 3.21071 16.4142 3.58579C16.7893 3.96086 17 4.46957 17 5V15M1 15C1 15.5304 1.21071 16.0391 1.58579 16.4142C1.96086 16.7893 2.46957 17 3 17H15C15.5304 17 16.0391 16.7893 16.4142 16.4142C16.7893 16.0391 17 15.5304 17 15M1 15V8.33333C1 7.8029 1.21071 7.29419 1.58579 6.91912C1.96086 6.54405 2.46957 6.33333 3 6.33333H15C15.5304 6.33333 16.0391 6.54405 16.4142 6.91912C16.7893 7.29419 17 7.8029 17 8.33333V15M9 9.66667H9.00711V9.67378H9V9.66667ZM9 11.6667H9.00711V11.6738H9V11.6667ZM9 13.6667H9.00711V13.6738H9V13.6667ZM7 11.6667H7.00711V11.6738H7V11.6667ZM7 13.6667H7.00711V13.6738H7V13.6667ZM5 11.6667H5.00711V11.6738H5V11.6667ZM5 13.6667H5.00711V13.6738H5V13.6667ZM11 9.66667H11.0071V9.67378H11V9.66667ZM11 11.6667H11.0071V11.6738H11V11.6667ZM11 13.6667H11.0071V13.6738H11V13.6667ZM13 9.66667H13.0071V9.67378H13V9.66667ZM13 11.6667H13.0071V11.6738H13V11.6667Z"
+                    stroke="#0D1418"
+                    stroke-width="0.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <p class="date">nov 2023                  - Actualidad
+                </p>
+          </div>
+            <p class="data">Tipo de estudios: <b>No acreditado</b></p>
+            <p class="data">
+              Grado obtenido: 
+              <b>No obtenido</b>
+              
+            </p>
+            <p class="data">Nombre de la institución: <b>Lemoncode</b></p>
+        </div>
+      </div>
+      <div class="main__section__item">
+        <div class="dot-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="8"
+            height="8"
+            viewBox="0 0 8 8"
+            fill="none"
+          >
+            <circle opacity="0.33" cx="4" cy="4" r="4" fill="#247A7E" />
+          </svg>
+        </div>
+        <div class="section__content">
+            <h3>Máster Frontend </h3>
+          <div class="section__content__date">
+            <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                >
+                  <path
+                    opacity="0.75"
+                    d="M4.33333 1V3M13.6667 1V3M1 15V5C1 4.46957 1.21071 3.96086 1.58579 3.58579C1.96086 3.21071 2.46957 3 3 3H15C15.5304 3 16.0391 3.21071 16.4142 3.58579C16.7893 3.96086 17 4.46957 17 5V15M1 15C1 15.5304 1.21071 16.0391 1.58579 16.4142C1.96086 16.7893 2.46957 17 3 17H15C15.5304 17 16.0391 16.7893 16.4142 16.4142C16.7893 16.0391 17 15.5304 17 15M1 15V8.33333C1 7.8029 1.21071 7.29419 1.58579 6.91912C1.96086 6.54405 2.46957 6.33333 3 6.33333H15C15.5304 6.33333 16.0391 6.54405 16.4142 6.91912C16.7893 7.29419 17 7.8029 17 8.33333V15M9 9.66667H9.00711V9.67378H9V9.66667ZM9 11.6667H9.00711V11.6738H9V11.6667ZM9 13.6667H9.00711V13.6738H9V13.6667ZM7 11.6667H7.00711V11.6738H7V11.6667ZM7 13.6667H7.00711V13.6738H7V13.6667ZM5 11.6667H5.00711V11.6738H5V11.6667ZM5 13.6667H5.00711V13.6738H5V13.6667ZM11 9.66667H11.0071V9.67378H11V9.66667ZM11 11.6667H11.0071V11.6738H11V11.6667ZM11 13.6667H11.0071V13.6738H11V13.6667ZM13 9.66667H13.0071V9.67378H13V9.66667ZM13 11.6667H13.0071V11.6738H13V11.6667Z"
+                    stroke="#0D1418"
+                    stroke-width="0.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <p class="date">abr 2023                  - oct 2023                </p>
+          </div>
+            <p class="data">Tipo de estudios: <b>Grado oficial</b></p>
+            <p class="data">
+              Grado obtenido: 
+              <b>Obtenido</b>
+              
+            </p>
+            <p class="data">Nombre de la institución: <b>Lemoncode</b></p>
+        </div>
+      </div>
+      <div class="main__section__item">
+        <div class="dot-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="8"
+            height="8"
+            viewBox="0 0 8 8"
+            fill="none"
+          >
+            <circle opacity="0.33" cx="4" cy="4" r="4" fill="#247A7E" />
+          </svg>
+        </div>
+        <div class="section__content">
+            <h3>Bootcamp JavaScript</h3>
+          <div class="section__content__date">
+            <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                >
+                  <path
+                    opacity="0.75"
+                    d="M4.33333 1V3M13.6667 1V3M1 15V5C1 4.46957 1.21071 3.96086 1.58579 3.58579C1.96086 3.21071 2.46957 3 3 3H15C15.5304 3 16.0391 3.21071 16.4142 3.58579C16.7893 3.96086 17 4.46957 17 5V15M1 15C1 15.5304 1.21071 16.0391 1.58579 16.4142C1.96086 16.7893 2.46957 17 3 17H15C15.5304 17 16.0391 16.7893 16.4142 16.4142C16.7893 16.0391 17 15.5304 17 15M1 15V8.33333C1 7.8029 1.21071 7.29419 1.58579 6.91912C1.96086 6.54405 2.46957 6.33333 3 6.33333H15C15.5304 6.33333 16.0391 6.54405 16.4142 6.91912C16.7893 7.29419 17 7.8029 17 8.33333V15M9 9.66667H9.00711V9.67378H9V9.66667ZM9 11.6667H9.00711V11.6738H9V11.6667ZM9 13.6667H9.00711V13.6738H9V13.6667ZM7 11.6667H7.00711V11.6738H7V11.6667ZM7 13.6667H7.00711V13.6738H7V13.6667ZM5 11.6667H5.00711V11.6738H5V11.6667ZM5 13.6667H5.00711V13.6738H5V13.6667ZM11 9.66667H11.0071V9.67378H11V9.66667ZM11 11.6667H11.0071V11.6738H11V11.6667ZM11 13.6667H11.0071V13.6738H11V13.6667ZM13 9.66667H13.0071V9.67378H13V9.66667ZM13 11.6667H13.0071V11.6738H13V11.6667Z"
+                    stroke="#0D1418"
+                    stroke-width="0.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <p class="date">nov 2022                  - mar 2023                </p>
+          </div>
+            <p class="data">Tipo de estudios: <b>No acreditado</b></p>
+            <p class="data">
+              Grado obtenido: 
+              <b>Obtenido</b>
+              
+            </p>
+            <p class="data">Nombre de la institución: <b>Lemoncode</b></p>
+        </div>
+      </div>
+      <div class="main__section__item">
+        <div class="dot-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="8"
+            height="8"
+            viewBox="0 0 8 8"
+            fill="none"
+          >
+            <circle opacity="0.33" cx="4" cy="4" r="4" fill="#247A7E" />
+          </svg>
+        </div>
+        <div class="section__content">
+            <h3>Certificado de profesionalidad en comercialización y gestión de productos y servicios financieros</h3>
+          <div class="section__content__date">
+            <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                >
+                  <path
+                    opacity="0.75"
+                    d="M4.33333 1V3M13.6667 1V3M1 15V5C1 4.46957 1.21071 3.96086 1.58579 3.58579C1.96086 3.21071 2.46957 3 3 3H15C15.5304 3 16.0391 3.21071 16.4142 3.58579C16.7893 3.96086 17 4.46957 17 5V15M1 15C1 15.5304 1.21071 16.0391 1.58579 16.4142C1.96086 16.7893 2.46957 17 3 17H15C15.5304 17 16.0391 16.7893 16.4142 16.4142C16.7893 16.0391 17 15.5304 17 15M1 15V8.33333C1 7.8029 1.21071 7.29419 1.58579 6.91912C1.96086 6.54405 2.46957 6.33333 3 6.33333H15C15.5304 6.33333 16.0391 6.54405 16.4142 6.91912C16.7893 7.29419 17 7.8029 17 8.33333V15M9 9.66667H9.00711V9.67378H9V9.66667ZM9 11.6667H9.00711V11.6738H9V11.6667ZM9 13.6667H9.00711V13.6738H9V13.6667ZM7 11.6667H7.00711V11.6738H7V11.6667ZM7 13.6667H7.00711V13.6738H7V13.6667ZM5 11.6667H5.00711V11.6738H5V11.6667ZM5 13.6667H5.00711V13.6738H5V13.6667ZM11 9.66667H11.0071V9.67378H11V9.66667ZM11 11.6667H11.0071V11.6738H11V11.6667ZM11 13.6667H11.0071V13.6738H11V13.6667ZM13 9.66667H13.0071V9.67378H13V9.66667ZM13 11.6667H13.0071V11.6738H13V11.6667Z"
+                    stroke="#0D1418"
+                    stroke-width="0.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <p class="date">abr 2018                  - oct 2018                </p>
+          </div>
+            <p class="data">Tipo de estudios: <b>Grado oficial</b></p>
+            <p class="data">
+              Grado obtenido: 
+              <b>Obtenido</b>
+              
+            </p>
+            <p class="data">Nombre de la institución: <b>Alborán Formación</b></p>
+        </div>
+      </div>
+      <div class="main__section__item">
+        <div class="dot-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="8"
+            height="8"
+            viewBox="0 0 8 8"
+            fill="none"
+          >
+            <circle opacity="0.33" cx="4" cy="4" r="4" fill="#247A7E" />
+          </svg>
+        </div>
+        <div class="section__content">
+            <h3>Técnico en Actividades Logísticas y de Almacenaje </h3>
+          <div class="section__content__date">
+            <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                >
+                  <path
+                    opacity="0.75"
+                    d="M4.33333 1V3M13.6667 1V3M1 15V5C1 4.46957 1.21071 3.96086 1.58579 3.58579C1.96086 3.21071 2.46957 3 3 3H15C15.5304 3 16.0391 3.21071 16.4142 3.58579C16.7893 3.96086 17 4.46957 17 5V15M1 15C1 15.5304 1.21071 16.0391 1.58579 16.4142C1.96086 16.7893 2.46957 17 3 17H15C15.5304 17 16.0391 16.7893 16.4142 16.4142C16.7893 16.0391 17 15.5304 17 15M1 15V8.33333C1 7.8029 1.21071 7.29419 1.58579 6.91912C1.96086 6.54405 2.46957 6.33333 3 6.33333H15C15.5304 6.33333 16.0391 6.54405 16.4142 6.91912C16.7893 7.29419 17 7.8029 17 8.33333V15M9 9.66667H9.00711V9.67378H9V9.66667ZM9 11.6667H9.00711V11.6738H9V11.6667ZM9 13.6667H9.00711V13.6738H9V13.6667ZM7 11.6667H7.00711V11.6738H7V11.6667ZM7 13.6667H7.00711V13.6738H7V13.6667ZM5 11.6667H5.00711V11.6738H5V11.6667ZM5 13.6667H5.00711V13.6738H5V13.6667ZM11 9.66667H11.0071V9.67378H11V9.66667ZM11 11.6667H11.0071V11.6738H11V11.6667ZM11 13.6667H11.0071V13.6738H11V13.6667ZM13 9.66667H13.0071V9.67378H13V9.66667ZM13 11.6667H13.0071V11.6738H13V11.6667Z"
+                    stroke="#0D1418"
+                    stroke-width="0.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <p class="date">feb 2018                  - ago 2018                </p>
+          </div>
+            <p class="data">Tipo de estudios: <b>Grado oficial</b></p>
+            <p class="data">
+              Grado obtenido: 
+              <b>Obtenido</b>
+              
+            </p>
+            <p class="data">Nombre de la institución: <b>Escuela de Organización Industrial</b></p>
+        </div>
+      </div>
+      <div class="main__section__item">
+        <div class="dot-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="8"
+            height="8"
+            viewBox="0 0 8 8"
+            fill="none"
+          >
+            <circle opacity="0.33" cx="4" cy="4" r="4" fill="#247A7E" />
+          </svg>
+        </div>
+        <div class="section__content">
+            <h3>Grado en Finanzas y Contabilidad</h3>
+          <div class="section__content__date">
+            <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                >
+                  <path
+                    opacity="0.75"
+                    d="M4.33333 1V3M13.6667 1V3M1 15V5C1 4.46957 1.21071 3.96086 1.58579 3.58579C1.96086 3.21071 2.46957 3 3 3H15C15.5304 3 16.0391 3.21071 16.4142 3.58579C16.7893 3.96086 17 4.46957 17 5V15M1 15C1 15.5304 1.21071 16.0391 1.58579 16.4142C1.96086 16.7893 2.46957 17 3 17H15C15.5304 17 16.0391 16.7893 16.4142 16.4142C16.7893 16.0391 17 15.5304 17 15M1 15V8.33333C1 7.8029 1.21071 7.29419 1.58579 6.91912C1.96086 6.54405 2.46957 6.33333 3 6.33333H15C15.5304 6.33333 16.0391 6.54405 16.4142 6.91912C16.7893 7.29419 17 7.8029 17 8.33333V15M9 9.66667H9.00711V9.67378H9V9.66667ZM9 11.6667H9.00711V11.6738H9V11.6667ZM9 13.6667H9.00711V13.6738H9V13.6667ZM7 11.6667H7.00711V11.6738H7V11.6667ZM7 13.6667H7.00711V13.6738H7V13.6667ZM5 11.6667H5.00711V11.6738H5V11.6667ZM5 13.6667H5.00711V13.6738H5V13.6667ZM11 9.66667H11.0071V9.67378H11V9.66667ZM11 11.6667H11.0071V11.6738H11V11.6667ZM11 13.6667H11.0071V13.6738H11V13.6667ZM13 9.66667H13.0071V9.67378H13V9.66667ZM13 11.6667H13.0071V11.6738H13V11.6667Z"
+                    stroke="#0D1418"
+                    stroke-width="0.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <p class="date">sept 2010                  - sept 2014                </p>
+          </div>
+            <p class="data">Tipo de estudios: <b>Grado oficial</b></p>
+            <p class="data">
+              Grado obtenido: 
+              <b>Obtenido</b>
+              
+            </p>
+            <p class="data">Nombre de la institución: <b>Universidad de Almería</b></p>
+        </div>
+      </div>
+    </section>
+
+      </main>
+
+        </div>
+  </body>
+</html>
+
+  
